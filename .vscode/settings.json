@@ -1,0 +1,79 @@
+{
+    "terminal.integrated.inheritEnv": true,
+    "editor.wordWrapColumn": 80,
+    "editor.renderWhitespace": "boundary",
+    "editor.rulers": [
+        80
+    ],
+    "terminal.integrated.fontSize": 13,
+    "breadcrumbs.enabled": true,
+    "editor.minimap.enabled": true,
+    "editor.renderControlCharacters": false,
+    "editor.formatOnSave": true,
+    "files.trimTrailingWhitespace": true,
+    "editor.lineHeight": 22,
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "*/.js.map": true,
+        "*/.js": {
+            "when": "$(basename).ts"
+        },
+        "*/.pyc": {
+            "when": "$(basename).py"
+        },
+        "**/_pycache_": true,
+        "*/.jar": {
+            "when": "$(basename).kt"
+        },
+    },
+    "workbench.tree.indent": 25,
+    "editor.fontWeight": "80",
+    // Python settings
+    "python.linting.pylintEnabled": false,
+    "python.linting.flake8Enabled": true,
+    "python.linting.flake8Args": [
+        "--max-line-length=88"
+        // "--ignore=E402,F841,F401,E302,E305",
+    ],
+    "explorer.confirmDragAndDrop": false,
+    "explorer.confirmDelete": false,
+    "window.title": "${activeEditorLong}${separator}${rootName}",
+    "workbench.editor.enablePreview": false,
+    "python.formatting.blackArgs": [
+        "--line-length",
+        "88"
+    ],
+    "python.formatting.provider": "none",
+    "terminal.integrated.automationShell.linux": "",
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter-notebook"
+    },
+    "terminal.integrated.automationShell.windows": "",
+    "[python]": {
+        "gitlens.codeLens.symbolScopes": [
+            "!Module"
+        ],
+        "editor.formatOnType": true,
+        "editor.defaultFormatter": "ms-python.black-formatter"
+    },
+    "python.analysis.completeFunctionParens": true,
+    "notebook.cellToolbarLocation": {
+        "default": "right",
+        "jupyter-notebook": "left"
+    },
+    "files.autoSave": "afterDelay",
+    "terminal.integrated.defaultProfile.linux": "zsh",
+    "launch": {
+        "configurations": [],
+        "compounds": []
+    },
+    "editor.guides.indentation": false,
+    "http.proxySupport": "override",
+    "python.terminal.activateEnvInCurrentTerminal": true,
+    "python.terminal.activateEnvironment": true,
+    "diffEditor.ignoreTrimWhitespace": true,
+    "git.mergeEditor": false,
+}
