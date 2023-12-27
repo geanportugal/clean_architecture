@@ -17,9 +17,11 @@ class Card:
 
     @classmethod
     def from_dict(cls, data):
+        print("======= entitie =========")
         """Convert data from a dictionary"""
         return cls(**data)
 
     def to_dict(self):
+        print("======= entitie =========")
         """Convert data into dictionary"""
         return asdict(self)

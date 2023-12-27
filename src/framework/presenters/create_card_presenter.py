@@ -13,6 +13,7 @@ class CreateCardPresenter(CreateCardPresenterInterface):
         :param output_dto: CreateCardOutputDto
         :return: Dict
         """
+        print("===== presenter =====>")
         return {
             "id": output_dto.card.id,
             "number": output_dto.card.number,

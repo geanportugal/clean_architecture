@@ -14,11 +14,14 @@ class CreateCardInputDto:
 
     def to_dict(self):
         """Convert data into dictionary"""
+        print("=== dto input ====>")
         return asdict(self)
 
 
 @dataclass
 class CreateCardOutputDto:
     """Output Dto for create card"""
+
+    print("=== dto output ====>")
 
     card: Card

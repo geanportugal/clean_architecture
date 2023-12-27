@@ -31,6 +31,7 @@ class CardEncryptor:
         cipher = Cipher(
             algorithms.AES(self.key), modes.ECB(), backend=default_backend()
         )
+        print("=== encryptor =====>")
         encryptor = cipher.encryptor()
         padder = padding.PKCS7(algorithms.AES.block_size).padder()
         padded_data = padder.update(card_number.encode()) + padder.finalize()

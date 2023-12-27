@@ -34,6 +34,7 @@ class CardRepositoryInterface(ABC):
         :param brand: card brand
         :return: Id
         """
+        print("===== repository =====>")
 
     @abstractmethod
     def update(self, card: Card) -> Optional[Card]:

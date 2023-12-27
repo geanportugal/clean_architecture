@@ -75,6 +75,7 @@ class CreateCardInputDtoValidator(BaseInputValidator):
 
     def validate(self) -> None:
         """Validates the input data"""
+        print("==== validate ====>")
         # Verify the input data using BaseInputValidator method
         super().verify(self.__schema)
         is_exp_date_valid = self.is_exp_date_valid(self.input_data["expiration_date"])

@@ -1,4 +1,5 @@
 from flask import jsonify
+import json
 from flask import Blueprint, request, current_app
 from framework.controllers.create_card_controller import (
     CreateCardController,
@@ -16,7 +17,8 @@ def create_card_blueprint():
     controller = CreateCardController(logger)
     controller.get_card_info(input_json)
     result = controller.execute()
-    return jsonify(result), 201
+
+    return result, 201
 
 
 @blueprint_create_card.route("/card/", methods=["GET"])
