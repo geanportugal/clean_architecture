@@ -1,9 +1,9 @@
 from typing import Dict
-from datetime import datetime
+from datetime import date, datetime
 import calendar
 import re
-from src.interactor.validations.base_input_validator import BaseInputValidator
-from src.interactor.errors.error_classes import ValidationError
+from interactor.validations.base_input_validator import BaseInputValidator
+from interactor.errors.error_classes import ValidationError
 from creditcard.card import BRAND_REGEX, CreditCard
 
 
@@ -46,19 +46,32 @@ class CreateCardInputDtoValidator(BaseInputValidator):
                 "required": True,
                 "empty": False,
             },
-            "expiration_date": {"type": "date", "required": True, "empty": False},
-            "cvv": {"type": "string", "required": False, "empty": True},
+            "expiration_date": {"type": "string", "required": True, "empty": False},
+            "cvv": {
+                "type": "string",
+                "required": False,
+                "empty": True,
+                "nullable": True,
+            },
+            "brand": {
+                "type": "string",
+                "required": False,
+                "empty": True,
+                "nullable": True,
+            },
         }
 
     def is_exp_date_valid(self, exp_date):
         exp = self._format_date(exp_date)
-        now = datetime.utcnow()
+        now = date.today()
         return exp > now
 
     def _format_date(self, date):
+        data = datetime.strptime(date, "%m/%Y").date()
         """Sets the last day of a month in a datetime object from given month / year"""
-        lastday = calendar.monthrange(date.year, date.month)
-        return datetime(date.year, date.month, lastday[1])
+        lastday = calendar.monthrange(data.year, data.month)[1]
+        last = data.replace(day=lastday)
+        return last
 
     def validate(self) -> None:
         """Validates the input data"""
@@ -71,6 +84,5 @@ class CreateCardInputDtoValidator(BaseInputValidator):
             self.input_data["expiration_date"]
         )
         is_valid_card = ValidatedCreditCard(self.input_data["number"]).is_valid()
-        if is_valid_card:
-            brand = ValidatedCreditCard(self.input_data["number"]).get_brand()
-            self.input_data["brand"] = brand
+
+        brand = ValidatedCreditCard(self.input_data["number"]).get_brand()

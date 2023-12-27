@@ -1,6 +1,6 @@
 from typing import Dict
-from src.interactor.dtos.create_card_dto import CreateCardOutputDto
-from src.interactor.interfaces.presenters.create_card_presenter import (
+from interactor.dtos.create_card_dto import CreateCardOutputDto
+from interactor.interfaces.presenters.create_card_presenter import (
     CreateCardPresenterInterface,
 )
 

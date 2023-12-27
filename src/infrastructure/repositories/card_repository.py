@@ -5,13 +5,13 @@ from typing import Optional
 import uuid
 from datetime import date
 from sqlalchemy.exc import IntegrityError
-from src.domain.entities.card import Card
-from src.interactor.interfaces.repositories.card_repository import (
+from domain.entities.card import Card
+from interactor.interfaces.repositories.card_repository import (
     CardRepositoryInterface,
 )
 
-from src.infrastructure.db_models.db_base import Session
-from src.infrastructure.db_models.card_model import CardDBModel
+from infrastructure.db_models.db_base import Session
+from infrastructure.db_models.card_model import CardDBModel
 
 
 class CardRepository(CardRepositoryInterface):
@@ -26,7 +26,7 @@ class CardRepository(CardRepositoryInterface):
             number=db_row.number,
             holder=db_row.holder,
             expiration_date=db_row.expiration_date,
-            cvv=db_row.expiration_date,
+            cvv=db_row.cvv,
             brand=db_row.brand,
         )
 
@@ -49,7 +49,7 @@ class CardRepository(CardRepositoryInterface):
         id = uuid.uuid4()
         card_db_model = CardDBModel(
             id=id,
-            numer=number,
+            number=number,
             holder=holder,
             expiration_date=expiration_date,
             cvv=cvv,

@@ -9,11 +9,11 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-DB_USER = os.getenv("DATABASE_USER")
-DB_PASS = os.getenv("DATABASE_PASSWORD")
-DB_NAME = os.getenv("DATABASE_NAME")
-DB_HOST = os.getenv("DATABASE_HOST")
-DB_PORT = os.getenv("DATABASE_PORT")
+DB_USER = os.getenv("POSTGRES_USER")
+DB_PASS = os.getenv("POSTGRES_PASSWORD")
+DB_NAME = os.getenv("POSTGRES_DB")
+DB_HOST = os.getenv("POSTGRES_HOST")
+DB_PORT = os.getenv("POSTGRES_PORT")
 DB_DRIVER = "postgresql+psycopg2"
 
 SECRET_KEY_CARD = os.getenv("SECRET_KEY_CARD")

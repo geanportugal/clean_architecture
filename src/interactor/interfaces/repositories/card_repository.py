@@ -2,7 +2,7 @@ import uuid
 from datetime import date
 from abc import ABC, abstractmethod
 from typing import Optional
-from src.domain.entities.card import Card
+from domain.entities.card import Card
 
 
 class CardRepositoryInterface(ABC):
@@ -18,7 +18,12 @@ class CardRepositoryInterface(ABC):
 
     @abstractmethod
     def create(
-        self, number: str, holder: str, expiration_date: date, cvv: str, brand: str
+        self,
+        number: str,
+        holder: str,
+        expiration_date: date,
+        cvv: Optional[str],
+        brand: str,
     ) -> Optional[Card]:
         """Create a Card
 

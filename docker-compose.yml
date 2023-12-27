@@ -1,0 +1,31 @@
+version: '3.9'
+
+services:
+
+  flaskapp:
+    container_name: flask
+    build:
+      context: .
+    ports:
+      - 5000:5000
+    volumes:
+      - ./src:/src
+
+    env_file:
+      - .env
+    depends_on:
+      - psql
+
+    command: "bash entrypoint-flask.sh"
+
+  psql:
+    container_name: postgres
+    image: postgres
+    command: postgres -c 'max_connections=500'
+    volumes:
+      - ./data/postgres/data:/var/lib/postgresql/data/
+    ports:
+      - 5432:5432
+
+    env_file:
+      - .env

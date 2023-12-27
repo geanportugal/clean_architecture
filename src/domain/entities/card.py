@@ -1,6 +1,6 @@
 import uuid
 from dataclasses import dataclass, asdict
-from datetime import datetime
+from datetime import date
 from typing import Optional
 
 
@@ -11,7 +11,7 @@ class Card:
     id: uuid.UUID
     number: str
     holder: str
-    expiration_date: datetime
+    expiration_date: date
     cvv: Optional[str]
     brand: str
 

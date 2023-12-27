@@ -3,7 +3,7 @@ from datetime import date
 from sqlalchemy import String
 from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy.dialects.postgresql import UUID
-from src.infrastructure.db_models.db_base import Base
+from infrastructure.db_models.db_base import Base
 
 
 class CardDBModel(Base):

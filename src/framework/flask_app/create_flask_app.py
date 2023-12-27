@@ -1,12 +1,12 @@
 from flask import Flask, g
 from werkzeug.exceptions import HTTPException
-from src.app.flask_postgresql.blueprints.create_profession_blueprint import (
-    blueprint_create_profession,
+from framework.flask_app.blueprints.create_card_blueprint import (
+    blueprint_create_card,
 )
-from src.interactor.interfaces.logger.logger import LoggerInterface
-from src.interactor.errors.error_classes import FieldValueNotPermittedException
-from src.infrastructure.db_models.db_base import Session
-from src.interactor.errors.error_classes import UniqueViolationError
+from interactor.interfaces.logger.logger import LoggerInterface
+from interactor.errors.error_classes import FieldValueNotPermittedException
+from infrastructure.db_models.db_base import Session
+from interactor.errors.error_classes import UniqueViolationError
 
 
 def format_error_response(error: Exception, error_code: int, logger: LoggerInterface):
@@ -25,7 +25,7 @@ def create_flask_app(logger: LoggerInterface):
     """Create Main Flask PostgreSQL app"""
     app = Flask(__name__)
     app.config["logger"] = logger
-    app.register_blueprint(blueprint_create_profession, url_prefix="/v1")
+    app.register_blueprint(blueprint_create_card, url_prefix="/api/V1")
 
     @app.errorhandler(HTTPException)
     def handle_http_error(error: HTTPException):

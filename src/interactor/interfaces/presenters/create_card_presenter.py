@@ -1,6 +1,6 @@
 from typing import Dict
 from abc import ABC, abstractmethod
-from src.interactor.dtos.create_card_dto import CreateCardOutputDto
+from interactor.dtos.create_card_dto import CreateCardOutputDto
 
 
 class CreateCardPresenterInterface(ABC):

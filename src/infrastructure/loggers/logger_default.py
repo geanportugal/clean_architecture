@@ -1,5 +1,5 @@
 import logging
-from src.interactor.interfaces.logger.logger import LoggerInterface
+from interactor.interfaces.logger.logger import LoggerInterface
 
 
 class LoggerDefault(LoggerInterface):

@@ -1,15 +1,20 @@
 from typing import Dict
-from src.interactor.dtos.create_card_dto import CreateCardInputDto, CreateCardOutputDto
-from src.interactor.interfaces.presenters.create_card_presenter import (
+import calendar
+from datetime import date, datetime
+from interactor.dtos.create_card_dto import CreateCardInputDto, CreateCardOutputDto
+from interactor.interfaces.presenters.create_card_presenter import (
     CreateCardPresenterInterface,
 )
-from src.interactor.interfaces.repositories.card_repository import (
+from interactor.interfaces.repositories.card_repository import (
     CardRepositoryInterface,
 )
-from src.interactor.validations.create_card_validator import CreateCardInputDtoValidator
-from src.interactor.interfaces.logger.logger import LoggerInterface
-from src.interactor.errors.error_classes import ItemNotCreatedException
-from src.interactor.encryption.card_encryptor import CardEncryptor
+from interactor.validations.create_card_validator import (
+    CreateCardInputDtoValidator,
+    ValidatedCreditCard,
+)
+from interactor.interfaces.logger.logger import LoggerInterface
+from interactor.errors.error_classes import ItemNotCreatedException
+from interactor.encryption.card_encryptor import CardEncryptor
 from configs.config import SALT, SECRET_KEY_CARD
 
 
@@ -35,19 +40,25 @@ class CreateCardUseCase:
 
         validator = CreateCardInputDtoValidator(input_dto.to_dict())
         validator.validate()
+
         encryptor = CardEncryptor(SECRET_KEY_CARD, SALT)
         encryptor_number = encryptor.encrypt_card(input_dto.number).hex()
+        brand = ValidatedCreditCard(input_dto.number).get_brand()
+        expiration_date = datetime.strptime(input_dto.expiration_date, "%m/%Y").date()
+        lastday = calendar.monthrange(expiration_date.year, expiration_date.month)[1]
+        expiration_date.replace(day=lastday)
+
         card = self.repository.create(
             encryptor_number,
             input_dto.holder,
-            input_dto.expiration_date,
+            expiration_date,
             input_dto.cvv,
-            input_dto.brand,
+            brand,
         )
         if card is None:
             self.logger.log_exception("Card creation failed")
             raise ItemNotCreatedException(input_dto.name, "Card")
         output_dto = CreateCardOutputDto(card)
         presenter_response = self.presenter.present(output_dto)
-        self.logger.log_info("Card created successfully")
+        # self.logger.log_info(message="Card created successfully")
         return presenter_response
