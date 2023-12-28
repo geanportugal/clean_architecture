@@ -47,7 +47,6 @@ class CreateCardController(ControllerInterface):
         """Execute the create card controller
         :returns: Card created
         """
-        print("=====  controller  ======>")
         repository = CardRepository()
         presenter = CreateCardPresenter()
         use_case = CreateCardUseCase(presenter, repository, self.logger)

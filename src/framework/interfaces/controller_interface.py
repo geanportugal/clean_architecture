@@ -14,4 +14,3 @@ class ControllerInterface(ABC):
         """Executes the controller
         :returns: Card created
         """
-        print("=== interface =====>")

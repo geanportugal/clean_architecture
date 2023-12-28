@@ -14,6 +14,6 @@ async def create_card(input_json: dict):
     controller.get_card_info(input_json)
     result = controller.execute()
     result["id"] = str(result["id"])
-    result["expiration_date"] = result["expiration_date"].isoformat()
+    result["expiration_date"] = result["expiration_date"]
 
     return JSONResponse(content=result)

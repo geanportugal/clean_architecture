@@ -46,7 +46,8 @@ class CreateCardUseCase:
         brand = ValidatedCreditCard(input_dto.number).get_brand()
         expiration_date = datetime.strptime(input_dto.expiration_date, "%m/%Y").date()
         lastday = calendar.monthrange(expiration_date.year, expiration_date.month)[1]
-        expiration_date.replace(day=lastday)
+
+        expiration_date = expiration_date.replace(day=lastday)
 
         card = self.repository.create(
             encryptor_number,
@@ -61,5 +62,5 @@ class CreateCardUseCase:
         output_dto = CreateCardOutputDto(card)
         presenter_response = self.presenter.present(output_dto)
         # self.logger.log_info(message="Card created successfully")
-        print("==== use cases ===>")
+
         return presenter_response

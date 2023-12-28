@@ -13,12 +13,12 @@ class CreateCardPresenter(CreateCardPresenterInterface):
         :param output_dto: CreateCardOutputDto
         :return: Dict
         """
-        print("===== presenter =====>")
+
         return {
             "id": output_dto.card.id,
             "number": output_dto.card.number,
             "holder": output_dto.card.holder,
-            "expiration_date": output_dto.card.expiration_date,
+            "expiration_date": output_dto.card.expiration_date.isoformat(),
             "cvv": output_dto.card.cvv,
             "brand": output_dto.card.brand,
         }

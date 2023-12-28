@@ -9,4 +9,3 @@ class CreateCardPresenterInterface(ABC):
     @abstractmethod
     def present(self, output_dto: CreateCardOutputDto) -> Dict:
         """Present the Card"""
-        print("==== presenter ====>")

@@ -46,7 +46,6 @@ class CardRepository(CardRepositoryInterface):
         :param brand: str
         :return: Optional[Card]
         """
-        print("===== respositories =====>")
         id = uuid.uuid4()
         card_db_model = CardDBModel(
             id=id,
